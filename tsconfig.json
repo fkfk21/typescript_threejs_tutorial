@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    // ソースマップを有効化
+    "sourceMap": true,
+    // Three.jsがES5未サポートなので、割り切って比較的新しい仕様でビルドする
+    "target": "es2015",
+    // TSのモジュールはES Modulesとして出力
+    "module": "es2015",
+    // node_modulesからライブラリを読み込む
+    "moduleResolution": "node",
+    // 厳密モードとして設定
+    "strict": true,
+    "lib": [
+      "es2023",
+      "dom"
+    ],
+    "allowSyntheticDefaultImports": true,
+    "types": ["node"],
+    "baseUrl": ".",
+    // "paths": {
+    //   // Three.jsのモジュールを読み込むためのパスを設定
+    //   "three": [
+    //     "node_modules/three/build/three.module.js"
+    //   ],
+    //   "three/addons/*": [
+    //     "node_modules/three/examples/jsm/*"
+    //   ],
+    // }
+  }
+}
