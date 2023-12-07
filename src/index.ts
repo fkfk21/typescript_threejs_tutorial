@@ -11,19 +11,16 @@ function init() {
   ///////////////////////////////////////////////
   /////////////// websocket setting /////////////
   ///////////////////////////////////////////////
-  const socket_url: string = `ws://${window.location.hostname}:5050`;
+  const socket_url: string = `ws://${window.location.hostname}:5051`;
   const socket = new WebSocket(socket_url);
-  socket.onopen = function(event) {
-    console.log('WebSocket is connected.');
-  }
-  socket.onmessage = function(event) {
+  socket.addEventListener('open', function (event) {
+    console.log('Socket is connected.');
+  });
+  socket.addEventListener('message', function (event) {
+    console.log('Message from server ', event.data);
     const data = JSON.parse(event.data);
-    addBox(data.width, data.height, data.depth,
-          Math.random()*500-1000, Math.random()*500-1000, 300);
-  }
-  socket.onerror = function(event) {
-    console.log('WebSocket error: ', event);
-  }
+    addBox(data.width, data.height, data.depth, Math.random()*300-150, Math.random()*300-150, 300);
+  });
 
  
   ///////////////////////////////////////////////

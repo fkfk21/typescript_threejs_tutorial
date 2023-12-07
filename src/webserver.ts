@@ -6,12 +6,11 @@ import express from 'express';
 const app: Express = express();
 const port = 5050;
 
-const server: http.Server = http.createServer(app);
-const wss: WebSocket.Server = new WebSocket.Server({ server });
+const wss: WebSocket.Server = new WebSocket.Server({ port: 5051 });
 
 
-app.use(express.json());
 app.use(express.static('dist'));
+app.use(express.json());
 
 interface BoxDimensions {
     width: number;
@@ -35,6 +34,7 @@ wss.on('connection', (ws: WebSocket) => {
 
 
 app.post('/box', (req, res) => {
+    console.log(req.body);
     boxDimensions = req.body;
     wss.clients.forEach(client => {
         console.log(client.url);
